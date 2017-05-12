@@ -1,0 +1,17 @@
+  
+  <div class = "container">
+    
+      <a  class="btn btn-default" href="/new" role="button">글쓰기</a><br><br>
+      
+      <% @posts.each do |p| %>
+      
+       title : <a href="/show/<%=p.id%>"> <%=p.title %></a> <br>
+       editor : <%= p.editor %> </a><br>
+      
+      <br>
+      <hr>
+      <% end %>
+   
+
+  </div>
+    

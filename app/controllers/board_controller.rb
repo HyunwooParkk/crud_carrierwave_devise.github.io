@@ -19,6 +19,9 @@ class BoardController < ApplicationController
   end  
   
   def show
+    
+    @replies = Reply.where(:postId => params[:post_id])
+    
     @show_post = Post.find(params[:post_id])
   end
   

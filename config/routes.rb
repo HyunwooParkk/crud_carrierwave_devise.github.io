@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   
   post 'update/:post_id' => 'board#update'
 
+  post 'reply_create' => 'comment#reply_create'
+  get 'reply_delete/:reply_id/:post_id' => 'comment#reply_delete'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

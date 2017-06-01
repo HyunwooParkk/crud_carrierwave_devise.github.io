@@ -1,4 +1,6 @@
 class BoardController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  
   def index
     @posts = Post.all
   end
@@ -13,8 +15,17 @@ class BoardController < ApplicationController
     create_post.editor = params[:editor]
     create_post.title = params[:title]
     create_post.content = params[:content]
+
+    uploader = UploadImageUploader.new
+    
+    uploader.store!(params[:inputUrl])
+
+    flash[:notice] = "파일이 전송되었습니다!"
+    create_post.image_url = uploader
+
     create_post.save
     redirect_to '/'
+
   
   end  
   
@@ -39,6 +50,7 @@ class BoardController < ApplicationController
     upd_post.content = params[:content]
     upd_post.save
     redirect_to '/'
+    
   end
   
   def delete
@@ -46,6 +58,7 @@ class BoardController < ApplicationController
     del_post = Post.find(params[:post_id])
     del_post.destroy
     redirect_to '/'
+    
   end
   
   

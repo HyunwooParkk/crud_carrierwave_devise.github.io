@@ -1,7 +1,18 @@
   
   <div class = "container">
     
+     
+      
+       <%  if user_signed_in? %>
+           <%= current_user.email %>
+            <a href= '/users/sign_out'>로그아웃</a> <br><br>
+        <% else %>
+          <a href= '/users/sign_in'>로그인</a> <br><br>
+     <% end %>
+      
       <a  class="btn btn-default" href="/new" role="button">글쓰기</a><br><br>
+      
+    
       
       <% @posts.each do |p| %>
       
